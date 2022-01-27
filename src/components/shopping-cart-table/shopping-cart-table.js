@@ -22,7 +22,7 @@ const ShoppingCartTable = () => {
           <th>Item</th>
           <th>Count</th>
           <th>Price</th>
-          <th>Action</th>
+          <th className='action'>Action</th>
         </tr>
         </thead>
 

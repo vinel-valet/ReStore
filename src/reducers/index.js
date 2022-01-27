@@ -3,7 +3,8 @@ const initialState = {
     loading: true,
     error: null,
     cartItems: [],
-    orderTotal: 0
+    orderTotal: 0,
+    orderCount: 0
 };
 
 
@@ -55,12 +56,15 @@ const updateOrder = (state, bookId, quantity) => {
     const newItem = updateCartItem(book, item, quantity);
     return {
         ...state,
+        orderTotal: state.orderTotal + quantity * book.price,
+        orderCount: state.orderCount + quantity * 1,
         cartItems: updateCartItems(cartItems, newItem, itemIndex)
     };
 };
 
 
 const reducer = (state = initialState, action) => {
+
 
     switch (action.type) {
         case 'FETCH_BOOKS_REQUEST':
