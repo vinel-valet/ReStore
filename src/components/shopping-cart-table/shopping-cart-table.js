@@ -1,14 +1,16 @@
 import React from 'react';
 import './shopping-cart-table.css';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {bookAddedToCart, bookRemovedFromCart, allBooksRemovedFromCart} from "../../actions";
 
 const ShoppingCartTable = () => {
 
   const {cartItems : items, orderTotal : totals} = useSelector(state => state);
+  const dispatch = useDispatch();
 
-  const onIncrease = (id) => console.log(`plus kniga ${id}`);
-  const onDelete = (id) => console.log(`delete ${id}`);
-  const onDecrease = (id) => console.log(`minus kniga ${id}`);
+  const onIncrease = (id) => dispatch(bookAddedToCart(id));
+  const onDelete = (id) => dispatch(allBooksRemovedFromCart(id));
+  const onDecrease = (id) => dispatch(bookRemovedFromCart(id));
 
     return (
     <div className="shopping-cart-table">
@@ -26,11 +28,11 @@ const ShoppingCartTable = () => {
 
         <tbody>
         {items.map((item, idx) => {
-          const {id, name, count, total} = item;
+          const {id, title, count, total} = item;
           return (
             <tr key={id}>
               <td>{idx + 1}</td>
-              <td>{name}</td>
+              <td>{title}</td>
               <td>{count}</td>
               <td>{total}</td>
               <td>
