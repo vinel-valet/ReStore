@@ -3,7 +3,7 @@ import './shop-header.css';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const ShopHeader = ({ numItems }) => {
+const ShopHeader = () => {
     const {orderTotal, orderCount} = useSelector(state => state)
   return (
     <header className="shop-header row">

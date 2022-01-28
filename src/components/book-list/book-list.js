@@ -7,11 +7,14 @@ import {useEffect} from "react";
 import Spinner from "../spinner/spinner";
 import ErrorIndicator from "../error-indicator/error-indicator";
 
-const BookList = ({books, onAddedToCart}) => {
+const BookList = ({books, onAddedToCart, loading}) => {
   return (
     <ul className="book-list">
       {
         books.map((book) => {
+          if (loading) {
+            return <Spinner/>
+          }
           return (
             <li key={book.id}>
               <BookListItem
@@ -49,7 +52,8 @@ const BookListContainer = ({bookstoreService}) => {
   }
   return (
     <BookList books={books}
-              onAddedToCart={(id) => onAddedToCart(id)}/>
+              onAddedToCart={(id) => onAddedToCart(id)}
+    loading={loading}/>
   )
 };
 
